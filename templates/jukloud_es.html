@@ -1,0 +1,285 @@
+$def with (title,name,canciones,artistas,albumes,generos)
+$var title:$title
+$var name:$name
+
+<script src='./static/js/jquery.js'></script>
+<script src="./static/js/audiojs/audio.js"></script>
+
+
+<link rel="stylesheet" href='./static/css/tablas.css'>
+<link rel="shortcut icon" href='./static/imgs/favicon.ico'>
+<script type="text/javascript">
+	  
+	jQuery(document).ready(function(){
+		
+	// Funciones del reproductor
+	jQuery(function() {
+		// Configuramos el reproductor para que pase a la siguiente pista
+		// al terminar la actual
+		var a = audiojs.createAll({
+			trackEnded: function() {
+								
+				var next = jQuery('.song_row.playing').next();
+				if (!next.length) next = jQuery('.song_row').first();
+				next.addClass('playing').siblings().removeClass('playing');
+				audio.load(jQuery('td.res_url',next).attr('textContent'));
+				jQuery(next).css("background-color","#96c63f");
+				jQuery(next).siblings().css("background-color","#FFFFFF");
+				audio.play();
+				
+				// Mostramos la cancion en su caja
+				var texto_a = jQuery(".artist_column",next).attr('textContent') + " - " + jQuery(".name_column",next).attr('textContent');
+			
+				// Añadimos el texto al title
+				jQuery(document).attr("title", "Jukloud: " + texto_a);
+				
+				// Hacemos una transicion para cambiar el texto
+				jQuery('#current_song_box').fadeOut('1000', function(){
+					jQuery(this).html(texto_a).fadeIn('1000');
+				});
+			}
+		});
+
+		// Cargamos la primera cancion
+        var audio = a[0];
+        
+		// Cargamos la cancion si se hace click en ella
+		jQuery(".song_row").live("click" , (function(e){
+			e.preventDefault();
+						
+			jQuery(this).addClass('playing').siblings().removeClass('playing');
+			audio.load(jQuery('td.res_url', this).attr('textContent'));
+			jQuery(this).css("background-color","#96c63f");
+			jQuery(this).siblings().css("background-color","#FFFFFF");
+			audio.play();
+			
+			var texto_b = jQuery(".artist_column",this).attr('textContent') + " - " + jQuery(".name_column",this).attr('textContent');
+			
+			// Añadimos el texto al title
+			jQuery(document).attr("title", "Jukloud: " + texto_b);
+			
+			// Hacemos una transicion para cambiar el texto
+			jQuery('#current_song_box').fadeOut('1000', function(){
+				jQuery(this).html(texto_b).fadeIn('1000');
+			});
+		
+		}));	
+	});
+		
+		//Llamada AJAX para actualizar la tabla de canciones al inicio
+		jQuery("#song_box").load("./ajax/getallsongs", function(){
+			//jQuery('#song_table').fixedHeaderTable({ footer: true, cloneHeadToFoot: true, fixedColumn: false });
+		});			
+		
+		//Resaltado de la fila del artista
+		jQuery(".artist_row").live("mouseover", (function(evento){
+				jQuery(this).css("background-color","#96c63f");
+		}));			
+		jQuery(".artist_row").live("mouseout", (function(evento){
+				jQuery(this).css("background-color","#ffffff");
+		}));				
+			
+		//Resaltado de la fila del album
+		jQuery(".album_row").live("mouseover", (function(evento){
+				jQuery(this).css("background-color","#96c63f");
+		}));			
+		jQuery(".album_row").live("mouseout", (function(evento){
+				jQuery(this).css("background-color","#ffffff");
+		}));				
+			
+		//Resaltado de la fila del genero
+		jQuery(".genre_row").live("mouseover", (function(evento){
+				jQuery(this).css("background-color","#96c63f");
+		}));			
+		jQuery(".genre_row").live("mouseout", (function(evento){
+				jQuery(this).css("background-color","#ffffff");
+		}));
+		
+		//Resaltado de la fila del todos los artistas
+		jQuery("#all_artists").live("mouseover", (function(evento){
+				jQuery(this).css("background-color","#96c63f");
+		}));			
+		jQuery("#all_artists").live("mouseout", (function(evento){
+				jQuery(this).css("background-color","#ffffff");
+		}));
+		
+		//Resaltado de la fila del todos los albumes
+		jQuery("#all_albums").live("mouseover", (function(evento){
+				jQuery(this).css("background-color","#96c63f");
+		}));			
+		jQuery("#all_albums").live("mouseout", (function(evento){
+				jQuery(this).css("background-color","#ffffff");
+		}));
+		
+		//Resaltado de la fila del todos los generos
+		jQuery("#all_genres").live("mouseover", (function(evento){
+				jQuery(this).css("background-color","#96c63f");
+		}));			
+		jQuery("#all_genres").live("mouseout", (function(evento){
+				jQuery(this).css("background-color","#ffffff");
+		}));
+			
+		
+		// Esta funcion actualiza las tablas de generos, albumes y canciones al seleccionar un artista
+		jQuery(".artist_row").live("click" , (function(evento){
+			//elimino el comportamiento por defecto del enlace
+			evento.preventDefault();
+
+			//Llamada AJAX para actualizar la tabla de albumes
+			jQuery("#album_box").load("./ajax/getalbumsfromartist?artist=" + encodeURI(jQuery(this).attr("textContent"))); 
+			//Llamada AJAX para actualizar la tabla de generos
+			jQuery("#genre_box").load("./ajax/getgenresfromartist?artist=" + encodeURI(jQuery(this).attr("textContent")));
+			//Llamada AJAX para actualizar la tabla de canciones
+			jQuery("#song_box").load("./ajax/getsongsfromartist?artist=" + encodeURI(jQuery(this).attr("textContent")));
+		}));
+		
+		// Esta funcion actualiza las tablas de artistas, generos y canciones al seleccionar un album
+		jQuery(".album_row").live("click" , (function(evento){
+			//elimino el comportamiento por defecto del enlace
+			evento.preventDefault();
+			//Mostrando mensaje de cargando
+			jQuery("#img_cargando").css("display","inline");
+			jQuery("#header").css("text-color","red");
+			//Llamada AJAX para actualizar la tabla de artistas
+			jQuery("#artist_box").load("./ajax/getartistsfromalbum?album=" + encodeURI(jQuery(this).attr("textContent"))); 
+			//Llamada AJAX para actualizar la tabla de generos
+			jQuery("#genre_box").load("./ajax/getgenresfromalbum?album=" + encodeURI(jQuery(this).attr("textContent")));
+			//Llamada AJAX para actualizar la tabla de canciones
+			jQuery("#song_box").load("./ajax/getsongsfromalbum?album=" + encodeURI(jQuery(this).attr("textContent")));
+		}));
+		
+		// Esta funcion actualiza las tablas de artistas, albumes y canciones al seleccionar un genero
+		jQuery(".genre_row").live("click" , (function(evento){
+			//elimino el comportamiento por defecto del enlace
+			evento.preventDefault();
+			//Llamada AJAX para actualizar la tabla de artistas
+			jQuery("#artist_box").load("./ajax/getartistsfromgenre?genre=" + encodeURI(jQuery(this).attr("textContent"))); 
+			//Llamada AJAX para actualizar la tabla de albumes
+			jQuery("#album_box").load("./ajax/getalbumsfromgenre?genre=" + encodeURI(jQuery(this).attr("textContent")));
+			//Llamada AJAX para actualizar la tabla de canciones
+			jQuery("#song_box").load("./ajax/getsongsfromgenre?genre=" + encodeURI(jQuery(this).attr("textContent")));
+		}));
+		
+		// Esta funcion muestra todas las tablas completas (sin filtros)
+		jQuery("#all_artists,#all_albums,#all_genres").live("click" , (function(evento){
+			//elimino el comportamiento por defecto del enlace
+			evento.preventDefault();
+			//Llamada AJAX para actualizar la tabla de artistas
+			jQuery("#artist_box").load("./ajax/getallartists"); 
+			//Llamada AJAX para actualizar la tabla de albumes
+			jQuery("#album_box").load("./ajax/getallalbums");
+			//Llamada AJAX para actualizar la tabla de generos
+			jQuery("#genre_box").load("./ajax/getallgenres");
+			//Llamada AJAX para actualizar la tabla de canciones
+			jQuery("#song_box").load("./ajax/getallsongs");
+		}));
+		
+		
+	})
+</script>
+
+
+
+
+<div id="header">
+<img id="logo" src="./static/imgs/jukloud_logo_med.png" alt="jukloud" />
+<div id="current_song_box"></div>
+
+</div>
+<div id="content">
+	
+<div id="upper_box">
+	
+<div id="artist_box">
+<table class="display" id="artist_table">	
+<thead>
+	<tr>
+		<th>Artista</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	<tr>
+		<td id="all_artists">*** Todos los artistas ***</td>
+	</tr>
+	$for artista in artistas:
+		<tr>
+			<td class="artist_row">$artista[0]</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+
+<div id="album_box">
+<table class="display" id="album_table">	
+<thead>
+	<tr>
+		<th>Álbum</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	<tr>
+		<td id="all_albums">*** Todos los álbumes ***</td>
+	</tr>
+	$for album in albumes:
+		<tr>
+			<td class="album_row">$album[0]</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+
+<div id="genre_box">
+<table class="display" id="genre_table">	
+<thead>
+	<tr>
+		<th>Género</th>
+	</tr>
+	</thead>
+	
+	<tbody>
+	<tr>
+		<td id="all_genres">*** Todos los géneros ***</td>
+	</tr>
+	$for genero in generos:
+		<tr>
+			<td class="genre_row">$genero[0]</td>
+		</tr>
+	</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="lower_box">
+<div id="song_box" class="song_box_c">
+
+<table cellpadding="0" cellspacing="0" border="1" class="display" id="song_table">	
+<thead>
+	<tr>
+		<th>Track</th>
+		<th>Canción</th>
+		<th>Artista</th>
+		<th>Álbum</th>
+		<th>Género</th>
+		<th style="display:none">Path</th>
+	</tr>
+</thead>
+	
+<tbody></tbody>
+
+</table>
+</div>
+</div>
+<div id="player_box">
+	<audio id="player" preload="none"></audio>
+</div>
+</div>
+</div>
+
+
+</body>
+
+</div>
+</html>

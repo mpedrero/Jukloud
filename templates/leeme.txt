@@ -1,0 +1,14 @@
+En estos ficheros se ha generado toda la página que será más adelante la
+interfaz de la aplicacion. Se han utilizado dos librerías de javascript:
+
+jQuery.js para algunos efectos y transiciones y para facilitar las
+peticiones AJAX
+
+audio.js que proporciona un reproductor muy básico de audio utilizando
+las nuevas etiquetas de HTML5. Además, si detecta que el navegador no es
+compatible con ellas incluye una version fallback en flash
+
+Gracias al framework utilizado (web.py) es posible incluir directamente
+código Python en este fichero html. Dicho codigo es necesario escaparlo
+con $. Es por ello que para las llamadas de jQuery se utiliza jQuery()
+en lugar de la funcion $()

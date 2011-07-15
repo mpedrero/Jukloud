@@ -1,0 +1,13 @@
+$def with (page)
+<html>
+<head>
+<meta charset="utf-8"> 
+<title>$page.title</title>
+</head>
+<body>
+<!--
+<p>P&aacute;gina: <b>$page.name</b>.</p>
+-->
+$:page
+</body>
+</html>

@@ -1,0 +1,58 @@
+Jukloud - A web-based audio player
+
+1. Installing Jukloud Server
+
+Before you can use Jukloud you need:
++ Python 2.6 or better (2.XX version)
++ Web.py (included in additional-libs folder)
++ eyeD3 (included in additional-libs folder)
+
+To install these libs in Windows, you should install Python first,
+unzip the libs in any directory and install them using the command
+prompt:
+
+Web.py -> $> python.exe setup.py install
+eyeD3 -> $> python.exe setup.py.in install
+
+In Linux you can use a package manager to find these packages.
+
+
+
+2. Starting Jukloud Server
+
+To start the server open a terminal and type:
+$> python jukloud.py
+
+The server will start in port 8080. You can specify another port:
+$> python jukloud.py 1234
+
+
+
+3. Scanning your music library
+
+At this moment, Jukloud only will look for songs in ./static/songs
+folder. You can either place your songs in this folder or use symlinks
+to redirect your actual music folder to ./static/songs.
+
+You can use subfolders and place any file in songs folder. Jukloud
+will scan recursively all the subfolders and will add to its database
+any mp3 file with correct ID3 info (artist/album/track/genre).
+
+To scan for music, open a terminal and type:
+$> python songsdb.py
+
+If you add new songs in folder, you can type it again to refresh the
+changes in Jukloud database. If you move or delete any file, you
+should reset the database. To do this, open a terminal and type:
+$> python songsdb.py reset
+
+
+4. Using the web player
+
+With the server running, you only have to open a browser and going to
+Jukloud, (ie: localhost:8080). The browser should show the player.
+
+You can filter your files by artist, album or genre. Clicking in 
+"All albums", "All artist" or "All genres" reset the interface.
+
+If you click in a song in the lower table, the player start playing it.
