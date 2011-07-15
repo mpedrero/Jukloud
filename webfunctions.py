@@ -17,13 +17,13 @@ def getAlbumsFromArtistTable(artista):
 u'''<table class="display" id="album_table">	
 <thead>
 	<tr>
-		<th id="album_table_header">Álbum</th>
+		<th id="album_table_header">Album</th>
 	</tr>
 	</thead>
 	
 	<tbody>
 	<tr>
-		<td id="all_albums">*** Todos los álbumes ***</td>
+		<td id="all_albums">*** All albums ***</td>
 	</tr>
 ''')
 	
@@ -44,13 +44,13 @@ def getGenresFromArtistTable(artista):
 u'''<table class="display" id="genre_table">	
 <thead>
 	<tr>
-		<th id="genre_table_header">Género</th>
+		<th id="genre_table_header">Genre</th>
 	</tr>
 	</thead>
 	
 	<tbody>
 	<tr>
-		<td id="all_genres">*** Todos los géneros ***</td>
+		<td id="all_genres">*** All genres ***</td>
 	</tr>
 ''')
 	
@@ -72,10 +72,10 @@ u'''<table class="display" id="song_table">
 <thead>
 	<tr>
 		<th class="track_column_header">#</th>
-		<th class="name_column_header">Canción</th>
-		<th class="artist_column_header">Artista</th>
-		<th class="album_column_header">Álbum</th>
-		<th class="genre_column_header">Género</th>
+		<th class="name_column_header">Title</th>
+		<th class="artist_column_header">Artist</th>
+		<th class="album_column_header">Album</th>
+		<th class="genre_column_header">Genre</th>
 		<th class="path_column_header" style="display:none">Path</th>
 	</tr>
 	</thead>
@@ -112,13 +112,13 @@ def getArtistsFromAlbumTable(album):
 u'''<table class="display" id="artist_table">	
 <thead>
 	<tr>
-		<th id="artist_table_header">Artista</th>
+		<th id="artist_table_header">Artist</th>
 	</tr>
 	</thead>
 	
 	<tbody>
 	<tr>
-		<td id="all_artists">*** Todos los artistas ***</td>
+		<td id="all_artists">*** All artists ***</td>
 	</tr>
 ''')
 	
@@ -139,13 +139,13 @@ def getGenresFromAlbumTable(album):
 u'''<table class="display" id="genre_table">	
 <thead>
 	<tr>
-		<th id="genre_table_header">Género</th>
+		<th id="genre_table_header">Genre</th>
 	</tr>
 	</thead>
 	
 	<tbody>
 	<tr>
-		<td id="all_genres">*** Todos los géneros ***</td>
+		<td id="all_genres">*** All genres ***</td>
 	</tr>
 ''')
 	
@@ -167,10 +167,10 @@ u'''<table class="display" id="song_table">
 <thead>
 	<tr>
 		<th class="track_column_header">#</th>
-		<th class="name_column_header">Canción</th>
-		<th class="artist_column_header">Artista</th>
-		<th class="album_column_header">Álbum</th>
-		<th class="genre_column_header">Género</th>
+		<th class="name_column_header">Title</th>
+		<th class="artist_column_header">Artist</th>
+		<th class="album_column_header">Album</th>
+		<th class="genre_column_header">Genre</th>
 		<th class="path_column_header" style="display:none">Path</th>
 	</tr>
 	</thead>
@@ -207,13 +207,13 @@ def getArtistsFromGenreTable(genre):
 u'''<table class="display" id="artist_table">	
 <thead>
 	<tr>
-		<th id="artist_table_header">Artista</th>
+		<th id="artist_table_header">Artist</th>
 	</tr>
 	</thead>
 	
 	<tbody>
 	<tr>
-		<td id="all_artists">*** Todos los artistas ***</td>
+		<td id="all_artists">*** All artists ***</td>
 	</tr>
 ''')
 	
@@ -234,13 +234,13 @@ def getAlbumsFromGenreTable(genre):
 u'''<table class="display" id="album_table">	
 <thead>
 	<tr>
-		<th id="album_table_header">Álbum</th>
+		<th id="album_table_header">Album</th>
 	</tr>
 	</thead>
 	
 	<tbody>
 	<tr>
-		<td id="all_albums">*** Todos los álbumes ***</td>
+		<td id="all_albums">*** All albums ***</td>
 	</tr>
 ''')
 	
@@ -262,10 +262,10 @@ u'''<table class="display" id="song_table">
 <thead>
 	<tr>
 		<th class="track_column_header">#</th>
-		<th class="name_column_header">Canción</th>
-		<th class="artist_column_header">Artista</th>
-		<th class="album_column_header">Álbum</th>
-		<th class="genre_column_header">Género</th>
+		<th class="name_column_header">Title</th>
+		<th class="artist_column_header">Artist</th>
+		<th class="album_column_header">Album</th>
+		<th class="genre_column_header">Genre</th>
 		<th class="path_column_header" style="display:none">Path</th>
 	</tr>
 	</thead>
@@ -302,13 +302,13 @@ def getAllArtistsTable():
 u'''<table class="display" id="artist_table">	
 <thead>
 	<tr>
-		<th id="artist_table_header">Artista</th>
+		<th id="artist_table_header">Artist</th>
 	</tr>
 	</thead>
 	
 	<tbody>
 	<tr>
-		<td id="all_artists">*** Todos los artistas ***</td>
+		<td id="all_artists">*** All artists ***</td>
 	</tr>
 ''')
 	
@@ -330,13 +330,13 @@ def getAllAlbumsTable():
 u'''<table class="display" id="album_table">	
 <thead>
 	<tr>
-		<th id="album_table_header">Álbum</th>
+		<th id="album_table_header">Album</th>
 	</tr>
 	</thead>
 	
 	<tbody>
 	<tr>
-		<td id="all_albums">*** Todos los álbumes ***</td>
+		<td id="all_albums">*** All albums ***</td>
 	</tr>
 ''')
 	
@@ -357,13 +357,13 @@ def getAllGenresTable():
 u'''<table class="display" id="genre_table">	
 <thead>
 	<tr>
-		<th id="genre_table_header">Género</th>
+		<th id="genre_table_header">Genre</th>
 	</tr>
 	</thead>
 	
 	<tbody>
 	<tr>
-		<td id="all_genres">*** Todos los géneros ***</td>
+		<td id="all_genres">*** All genres ***</td>
 	</tr>
 ''')
 	
@@ -385,10 +385,10 @@ u'''<table class="display" id="song_table">
 <thead>
 	<tr>
 		<th class="track_column_header">#</th>
-		<th class="name_column_header">Canción</th>
-		<th class="artist_column_header">Artista</th>
-		<th class="album_column_header">Álbum</th>
-		<th class="genre_column_header">Género</th>
+		<th class="name_column_header">Title</th>
+		<th class="artist_column_header">Artist</th>
+		<th class="album_column_header">Album</th>
+		<th class="genre_column_header">Genre</th>
 		<th class="path_column_header" style="display:none">Path</th>
 	</tr>
 	</thead>
